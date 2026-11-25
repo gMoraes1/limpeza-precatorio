@@ -64,4 +64,4 @@ Usei o Claude (Anthropic) no VSCode, pelo Claude Code.
 - Refiz à mão os cálculos de prazo e os totais por processo.
 - Executei o programa passo a passo no depurador do VSCode para entender o fluxo.
 - Os testes cobrem as regras em que um erro custaria mais caro: prazo nos limites de 2 de abril e fuso, repetição e reimportação, versão do evento, estorno e normalização de valor.
-- O SQL de prevenção foi executado num PostgreSQL 14 temporário sobre o `schema.sql` original, simulando reimportação, correção de evento e estorno.
+- O SQL de prevenção foi testado em um ambiente isolado, utilizando um container Docker temporário com PostgreSQL 14, inicializado a partir do schema.sql original. Foram simulados cenários de reimportação, correção de eventos e estorno, a fim de validar o comportamento e a integridade dos dados após a execução dos comandos.
