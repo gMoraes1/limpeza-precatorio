@@ -80,23 +80,23 @@ FROM (
 COMMIT;
 
 
-#Gravação de um evento pelo script de importação (parâmetros no estilo psycopg).
-# Só sobrescreve quando a versão recebida é mais nova; repetir a mesma versão não muda nada.
-#
-# INSERT INTO pagamento (precatorio_id, evento_id, tipo, valor, pago_em, atualizado_em)
-# VALUES (%(precatorio_id)s, %(evento_id)s, %(tipo)s, %(valor)s, %(pago_em)s, %(atualizado_em)s)
-# ON CONFLICT (evento_id) DO UPDATE
-#    SET precatorio_id = EXCLUDED.precatorio_id,
-#        tipo          = EXCLUDED.tipo,
-#        valor         = EXCLUDED.valor,
-#        pago_em       = EXCLUDED.pago_em,
-#        atualizado_em = EXCLUDED.atualizado_em
-#  WHERE pagamento.atualizado_em < EXCLUDED.atualizado_em;
+--Gravação de um evento pelo script de importação (parâmetros no estilo psycopg).
+-- Só sobrescreve quando a versão recebida é mais nova; repetir a mesma versão não muda nada.
+--
+-- INSERT INTO pagamento (precatorio_id, evento_id, tipo, valor, pago_em, atualizado_em)
+-- VALUES (%(precatorio_id)s, %(evento_id)s, %(tipo)s, %(valor)s, %(pago_em)s, %(atualizado_em)s)
+-- ON CONFLICT (evento_id) DO UPDATE
+--    SET precatorio_id = EXCLUDED.precatorio_id,
+--        tipo          = EXCLUDED.tipo,
+--        valor         = EXCLUDED.valor,
+--        pago_em       = EXCLUDED.pago_em,
+--        atualizado_em = EXCLUDED.atualizado_em
+--  WHERE pagamento.atualizado_em < EXCLUDED.atualizado_em;
 
 
-# Duplicatas já existentes (rodar antes do passo 4):
-#
-# SELECT evento_id, count(*), array_agg(id ORDER BY criado_em) AS ids
-# FROM pagamento
-# GROUP BY evento_id
-# HAVING count(*) > 1;
+-- Duplicatas já existentes (rodar antes do passo 4):
+--
+-- SELECT evento_id, count(*), array_agg(id ORDER BY criado_em) AS ids
+-- FROM pagamento
+-- GROUP BY evento_id
+-- HAVING count(*) > 1;
